@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+
+<html class="light scroll-smooth" lang="es" style="">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;family=Metropolis:wght@700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#44474e",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#e9c400",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed-dim": "#ffb3b1",
+                        "on-primary-fixed": "#001c3b",
+                        "surface-container-highest": "#e1e3e4",
+                        "primary": "#000209",
+                        "surface-container": "#edeeef",
+                        "surface": "#f8f9fa",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-fixed-dim": "#b0c8f0",
+                        "inverse-primary": "#b0c8f0",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#4c3e00",
+                        "tertiary-fixed": "#ffe171",
+                        "on-surface": "#191c1d",
+                        "surface-container-high": "#e7e8e9",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#db313f",
+                        "inverse-surface": "#2e3132",
+                        "surface-tint": "#485f83",
+                        "tertiary-container": "#c9a800",
+                        "outline": "#74777f",
+                        "inverse-on-surface": "#f0f1f2",
+                        "outline-variant": "#c4c6cf",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#410007",
+                        "secondary-fixed": "#ffdad8",
+                        "surface-dim": "#d9dadb",
+                        "tertiary": "#705d00",
+                        "on-background": "#191c1d",
+                        "on-secondary-fixed-variant": "#92001c",
+                        "on-primary-fixed-variant": "#30486a",
+                        "on-primary-container": "#6f86ab",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#221b00",
+                        "secondary": "#b7102a",
+                        "primary-container": "#001d3d",
+                        "primary-fixed": "#d5e3ff",
+                        "on-secondary-container": "#fffbff",
+                        "on-tertiary-fixed-variant": "#554600",
+                        "background": "#f8f9fa",
+                        "surface-variant": "#e1e3e4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-padding-mobile": "40px",
+                        "base": "8px",
+                        "section-padding-desktop": "80px",
+                        "container-max-width": "1200px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["inter"],
+                        "technical-mono": ["jetbrainsMono"],
+                        "display-lg": ["metropolis"],
+                        "headline-sm": ["metropolis"],
+                        "body-lg": ["inter"],
+                        "body-md": ["inter"],
+                        "headline-md": ["metropolis"],
+                        "display-lg-mobile": ["metropolis"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "technical-mono": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .technical-border {
+            border: 1px solid #e1e3e4;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(rgba(0, 2, 9, 0.4), rgba(0, 2, 9, 0.4)), url('file:///C:/Users/David/.gemini/antigravity/brain/ee30002e-2a65-43cb-a4c2-f63ffd1df81d/mechanic_fixing_engine_retry_1779007057000.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* ── Before / After Slider ── */
+        .ba-slider {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            cursor: col-resize;
+            user-select: none;
+            border-radius: 0.25rem;
+            box-shadow: 0 8px 32px rgba(0, 2, 9, 0.18);
+        }
+
+        .ba-slider>img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .ba-after-wrap {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            width: 50%;
+        }
+
+        .ba-after-wrap img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            min-width: unset;
+            max-width: none;
+        }
+
+        .ba-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #fff;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            pointer-events: none;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .ba-handle::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            background: #b7102a;
+            border-radius: 50%;
+            box-shadow: 0 3px 16px rgba(0, 0, 0, 0.45);
+        }
+
+        .ba-handle::after {
+            content: '\2194';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 22px;
+            font-weight: 800;
+            z-index: 11;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .ba-label {
+            position: absolute;
+            bottom: 14px;
+            font-family: 'Metropolis', 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #fff;
+            background: rgba(0, 2, 9, 0.62);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 5px 14px;
+            border-radius: 4px;
+            pointer-events: none;
+            z-index: 12;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .ba-label-before {
+            left: 14px;
+        }
+
+        .ba-label-after {
+            right: 14px;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-surface" data-mode="connect">
+    <!-- TopNavBar - Reverted to transparent overlay style -->
+    <nav class="sticky top-0 w-full z-50 flex justify-center bg-white border-b border-outline-variant shadow-md">
+        <div
+            class="w-full max-w-container-max-width flex justify-between items-center px-4 md:px-section-padding-desktop py-6">
+            <div class="font-headline-sm text-headline-sm font-bold text-primary">
+                Talleres Nieto Becerra
+            </div>
+            <div id="desktop-menu" class="hidden md:flex gap-8 items-center">
+                <a class="font-label-caps text-label-caps text-primary border-b-2 border-secondary hover:text-secondary-fixed transition-colors duration-200"
+                    href="#servicios">Servicios</a>
+                <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200"
+                    href="#sobre-nosotros">Sobre Nosotros</a>
+                <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200"
+                    href="#ubicacion">Ubicación</a>
+                <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200"
+                    href="#horarios">Horarios</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="hidden lg:block font-label-caps text-label-caps text-primary">952 87 64 90</span>
+                <a href="#cita"
+                    class="bg-secondary text-on-secondary px-6 py-2 font-label-caps text-label-caps uppercase tracking-wider hover:opacity-80 transition-opacity inline-block text-center">Pedir
+                    Cita</a>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <!-- Hero Section -->
+        <section
+            class="hero-gradient min-h-[819px] flex items-center justify-center text-center px-4 bg-cover bg-center bg-no-repeat"
+            data-alt="High-resolution professional photography of a modern, clean, and well-lit car repair shop with high-end equipment and hydraulic lifts, creating a professional and technical atmosphere."
+            style='background-image: linear-gradient(rgba(0, 2, 9, 0.45), rgba(0, 2, 9, 0.45)), url("file:///C:/Users/David/.gemini/antigravity/brain/ee30002e-2a65-43cb-a4c2-f63ffd1df81d/mechanic_fixing_engine_retry_1779007057000.png");'>
+            <div class="max-w-3xl">
+                <h1
+                    class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-white drop-shadow-lg mb-6">
+                    Tu coche en las mejores manos en Ronda
+                </h1>
+                <p class="font-body-lg text-body-lg text-white drop-shadow-md mb-10">
+                    Ingeniería de precisión y cuidado experto para tu vehículo. Especialistas en mecánica avanzada y
+                    mantenimiento preventivo.
+                </p>
+                <a class="inline-flex items-center gap-3 bg-secondary text-white px-8 py-4 font-headline-sm text-headline-sm rounded-lg hover:bg-on-secondary-fixed-variant transition-all transform active:scale-95"
+                    href="#cita">
+                    <span class="material-symbols-outlined">calendar_month</span>
+                    Pedir Cita Previa
+                </a>
+            </div>
+        </section>
+        <!-- Services Grid -->
+        <section id="servicios"
+            class="scroll-mt-24 py-section-padding-mobile md:py-section-padding-desktop px-4 max-w-container-max-width mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-headline-md text-headline-md mb-4 text-primary">Nuestros Servicios Especializados</h2>
+                <div class="w-16 h-1 bg-secondary mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+                <!-- Mecánica -->
+                <div
+                    class="bg-surface p-8 technical-border hover:border-primary transition-colors flex flex-col items-start gap-4">
+                    <span class="material-symbols-outlined text-4xl text-secondary">settings_suggest</span>
+                    <h3 class="font-headline-sm text-headline-sm">Mecánica Multimarca</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Diagnóstico avanzado y reparación
+                        integral para cualquier fabricante con recambios certificados.</p>
+                </div>
+                <!-- Chapa y Pintura -->
+                <div
+                    class="bg-surface p-8 technical-border hover:border-primary transition-colors flex flex-col items-start gap-4">
+                    <span class="material-symbols-outlined text-4xl text-secondary">format_paint</span>
+                    <h3 class="font-headline-sm text-headline-sm">Chapa y Pintura</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Acabados de fábrica utilizando sistemas
+                        de pintura de última generación y secado al horno.</p>
+                </div>
+                <!-- Motos -->
+                <div
+                    class="bg-surface p-8 technical-border hover:border-primary transition-colors flex flex-col items-start gap-4">
+                    <span class="material-symbols-outlined text-4xl text-secondary">two_wheeler</span>
+                    <h3 class="font-headline-sm text-headline-sm">Reparación de Motos</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Servicio técnico especializado para
+                        motocicletas de alta cilindrada y scooters urbanas.</p>
+                </div>
+                <!-- Pre-ITV -->
+                <div
+                    class="bg-surface p-8 technical-border hover:border-primary transition-colors flex flex-col items-start gap-4">
+                    <span class="material-symbols-outlined text-4xl text-secondary">fact_check</span>
+                    <h3 class="font-headline-sm text-headline-sm">Pre-ITV</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Revisión exhaustiva de puntos críticos
+                        para asegurar el éxito en la inspección técnica oficial.</p>
+                </div>
+                <!-- Neumáticos y Alineación -->
+                <div
+                    class="bg-surface p-8 technical-border hover:border-primary transition-colors flex flex-col items-start gap-4">
+                    <span class="material-symbols-outlined text-4xl text-secondary">tire_repair</span>
+                    <h3 class="font-headline-sm text-headline-sm">Neumáticos y Alineación</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Cambio, equilibrado y alineación de
+                        neumáticos de las principales marcas para garantizar tu seguridad en carretera.</p>
+                </div>
+                <!-- Garantía -->
+                <div
+                    class="bg-surface p-8 technical-border hover:border-primary transition-colors flex flex-col items-start gap-4">
+                    <span class="material-symbols-outlined text-4xl text-secondary">verified</span>
+                    <h3 class="font-headline-sm text-headline-sm">Garantía en Reparaciones</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Todas nuestras intervenciones y piezas
+                        de recambio cuentan con garantía oficial para tu total tranquilidad.</p>
+                </div>
+                <!-- Expert Guidance -->
+                <div
+                    class="md:col-span-2 lg:col-span-3 bg-primary text-white p-8 flex flex-col justify-center items-center text-center gap-4 rounded-lg">
+                    <h3 class="font-headline-sm text-headline-sm">¿Dudas Técnicas?</h3>
+                    <p class="font-body-md text-body-md text-surface-variant">Llámanos ahora y habla con un mecánico
+                        especialista.</p>
+                    <a class="font-technical-mono text-technical-mono text-secondary-fixed" data-stitch-orig-opacity="0"
+                        href="tel:952876490">952 87 64 90</a>
+                </div>
+            </div>
+        </section>
+        <!-- Trust Section -->
+        <section id="sobre-nosotros"
+            class="scroll-mt-24 bg-surface-container py-section-padding-mobile md:py-section-padding-desktop px-4">
+            <div class="max-w-container-max-width mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <h2 class="font-headline-md text-headline-md tracking-tight">Resultados de Precisión</h2>
+                    <!-- Before / After interactive slider -->
+                    <div id="ba-slider" class="ba-slider">
+                        <!-- ANTES -->
+                        <img src="file:///C:/Users/David/.gemini/antigravity/brain/e18908c6-eb59-4106-a494-f75526253c35/media__1779374921635.jpg"
+                            alt="Carrocería con raspón antes de la reparación" draggable="false"
+                            class="w-full h-full object-cover">
+                        <!-- DESPUÉS -->
+                        <div class="ba-after-wrap" id="ba-after-wrap">
+                            <img src="file:///C:/Users/David/.gemini/antigravity/brain/e18908c6-eb59-4106-a494-f75526253c35/media__1779374914727.jpg"
+                                alt="Carrocería restaurada después de la reparación" draggable="false"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <!-- Handle -->
+                        <div class="ba-handle" id="ba-handle"></div>
+                        <!-- Labels -->
+                        <span class="ba-label ba-label-before">Antes</span>
+                        <span class="ba-label ba-label-after">Después</span>
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <h2 class="font-headline-md text-headline-md">¿Por qué elegir Talleres Nieto Becerra?</h2>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-secondary"
+                                style='font-variation-settings: "FILL" 1;'>verified</span>
+                            <div>
+                                <h4 class="font-headline-sm text-[18px] leading-tight mb-1">Garantía en piezas</h4>
+                                <p class="font-body-md text-body-md text-on-surface-variant">Solo utilizamos componentes
+                                    originales o de calidad equivalente certificada.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-secondary"
+                                style='font-variation-settings: "FILL" 1;'>speed</span>
+                            <div>
+                                <h4 class="font-headline-sm text-[18px] leading-tight mb-1">Rapidez</h4>
+                                <p class="font-body-md text-body-md text-on-surface-variant">Entendemos que tu tiempo es
+                                    valioso. Optimizamos procesos para entregas puntuales.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-secondary"
+                                style='font-variation-settings: "FILL" 1;'>request_quote</span>
+                            <div>
+                                <h4 class="font-headline-sm text-[18px] leading-tight mb-1">Presupuesto sin compromiso
+                                </h4>
+                                <p class="font-body-md text-body-md text-on-surface-variant">Transparencia total. Te
+                                    explicamos cada detalle de la reparación antes de empezar.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- Social Proof -->
+        <section class="py-section-padding-mobile md:py-section-padding-desktop px-4 max-w-container-max-width mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-headline-md text-headline-md">Lo que dicen nuestros clientes</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="technical-border p-8 space-y-4">
+                    <div class="flex text-tertiary gap-1">
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                    </div>
+                    <p class="font-body-md text-body-md italic">"Sólo puedo decir que es mi taller de confianza. Jorge
+                        es un tipo genial, muy profesional. Siempre atento y dispuesto a ayudarte, aconsejarte lo mejor
+                        posible. Sin duda, seguiré llevando mis coches a él."</p>
+                    <p class="font-label-caps text-label-caps text-secondary">— ElKnijo </p>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="technical-border p-8 space-y-4">
+                    <div class="flex text-tertiary gap-1">
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                    </div>
+                    <p class="font-body-md text-body-md italic">"Fui al taller en pleno viaje por un problema elctrico
+                        generado por la radio del coche y a pesar de no tener tiempo, me hicieron un gran favor. Quiero
+                        darle la gracias personalmente a Alex, el mecanico que hizo el esfuerzo de atenderme fuera de su
+                        horario comercial. Un saludo."</p>
+                    <p class="font-label-caps text-label-caps text-secondary">— Maca Lister GRX</p>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="technical-border p-8 space-y-4">
+                    <div class="flex text-tertiary gap-1">
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                        <span class="material-symbols-outlined w-5 h-5 text-[20px] leading-none"
+                            style='font-variation-settings: "FILL" 1;'>star</span>
+                    </div>
+                    <p class="font-body-md text-body-md italic">"Taller con muchos años de experiencia, Jorge gran
+                        profesional y trato excepcional “</p>
+                    <p class="font-label-caps text-label-caps text-secondary">— Marina Garcia</p>
+                </div>
+            </div>
+        </section>
+        <!-- Appointment Functionality & Form -->
+        <section id="horarios"
+            class="scroll-mt-24 bg-primary text-white py-section-padding-mobile md:py-section-padding-desktop px-4">
+            <div id="contacto" class="scroll-mt-24 max-w-container-max-width mx-auto flex flex-col md:flex-row gap-16">
+                <div class="md:w-1/2 space-y-6">
+                    <h2 class="font-headline-md text-headline-md">Solicita tu Cita Previa</h2>
+                    <p class="font-body-lg text-body-lg text-surface-variant">Completa el formulario y uno de nuestros
+                        asesores técnicos te contactará para confirmar el horario que mejor te convenga.</p>
+                    <div class="flex flex-col gap-4 mt-8">
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-secondary">location_on</span>
+                            <span class="font-body-md text-body-md">Calle Granada, 15, Ronda</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-secondary">schedule</span>
+                            <span class="font-body-md text-body-md">L-V: 09:00 - 20:00</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="cita" class="scroll-mt-24 md:w-1/2 bg-surface text-on-surface p-8 rounded-lg shadow-xl">
+                    <form id="cita-form" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <label class="font-label-caps text-label-caps text-on-surface-variant">Nombre</label>
+                                <input id="campo-nombre"
+                                    class="w-full bg-surface-container border-outline-variant focus:border-primary px-4 py-3"
+                                    placeholder="Tu nombre completo" type="text" required />
+                            </div>
+                            <div class="space-y-1">
+                                <label class="font-label-caps text-label-caps text-on-surface-variant">Teléfono</label>
+                                <input id="campo-telefono"
+                                    class="w-full bg-surface-container border-outline-variant focus:border-primary px-4 py-3"
+                                    placeholder="000 000 000" type="tel" required />
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="font-label-caps text-label-caps text-on-surface-variant">Servicio
+                                Requerido</label>
+                            <select id="campo-servicio"
+                                class="w-full bg-surface-container border-outline-variant focus:border-primary px-4 py-3">
+                                <option>Mecánica</option>
+                                <option>Chapa y Pintura</option>
+                                <option>Pre-ITV</option>
+                                <option>Mantenimiento</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="font-label-caps text-label-caps text-on-surface-variant">Mensaje / Detalles
+                                del vehículo</label>
+                            <textarea id="campo-mensaje"
+                                class="w-full bg-surface-container border-outline-variant focus:border-primary px-4 py-3 h-32"
+                                placeholder="Cuéntanos brevemente qué necesita tu coche..." required></textarea>
+                        </div>
+                        <button
+                            class="w-full bg-secondary text-white py-4 font-headline-sm text-[18px] hover:bg-on-secondary-fixed-variant transition-colors">Enviar
+                            Solicitud</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- Location -->
+        <section id="ubicacion" class="scroll-mt-24 h-[450px] w-full m-0 p-0 relative overflow-hidden">
+            <iframe src="https://maps.google.com/maps?width=100%25&amp;height=450&amp;hl=es&amp;q=Ronda,%20M%C3%A1laga,%20Spain+(Talleres%20Nieto%20Becerra)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div class="bg-surface p-6 shadow-2xl pointer-events-auto technical-border">
+                    <h4 class="font-headline-sm text-headline-sm mb-2">Visítanos en Ronda</h4>
+                    <p class="font-body-md text-body-md mb-4">Calle Granada, 15, Ronda</p>
+                    <a class="text-secondary font-label-caps text-label-caps flex items-center gap-2 hover:underline"
+                        href="https://maps.google.com/?q=Calle+Granada+15+Ronda">
+                        VER EN GOOGLE MAPS
+                        <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer
+        class="w-full py-section-padding-mobile md:py-section-padding-desktop px-4 md:px-section-padding-desktop flex flex-col md:flex-row justify-between items-center gap-base bg-primary dark:bg-primary-container text-on-primary dark:text-primary-fixed border-t border-on-primary-container">
+        <div class="flex flex-col items-center md:items-start gap-4">
+            <div class="font-headline-sm text-headline-sm text-on-primary">Talleres Nieto Becerra</div>
+            <p class="font-body-md text-body-md opacity-80">© 2026 Talleres Nieto Becerra. Precisión y Confianza en
+                Ronda.</p>
+        </div>
+        <div class="flex gap-8 mt-8 md:mt-0">
+            <a class="font-body-md text-body-md text-surface-variant hover:text-on-primary transition-colors"
+                href="#">Aviso Legal</a>
+            <a class="font-body-md text-body-md text-surface-variant hover:text-on-primary transition-colors"
+                href="#">Privacidad</a>
+            <a class="font-body-md text-body-md text-surface-variant hover:text-on-primary transition-colors"
+                href="#">Cookies</a>
+            <a class="font-body-md text-body-md text-surface-variant hover:text-on-primary transition-colors"
+                href="#contacto">Contacto</a>
+        </div>
+    </footer>
+    <!-- BottomNavBar (Mobile) -->
+    <div
+        class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface dark:bg-inverse-surface border-t border-outline-variant shadow-lg md:hidden">
+        <a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1"
+            href="#">
+            <span class="material-symbols-outlined">home</span>
+            <span class="font-label-caps text-label-caps-mobile">Inicio</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high"
+            href="https://wa.me/611760606">
+            <span class="material-symbols-outlined">chat</span>
+            <span class="font-label-caps text-label-caps-mobile">WhatsApp</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high"
+            href="tel:611760606">
+            <span class="material-symbols-outlined">call</span>
+            <span class="font-label-caps text-label-caps-mobile">Llamar</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high"
+            href="#">
+            <span class="material-symbols-outlined">distance</span>
+            <span class="font-label-caps text-label-caps-mobile">Mapa</span>
+        </a>
+    </div>
+    <!-- Floating FAB (WhatsApp) -->
+    <a class="fixed right-6 bottom-20 md:bottom-10 z-40 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-transform flex items-center justify-center"
+        href="https://wa.me/611760606" title="WhatsApp">
+        <svg fill="currentColor" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.417-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.305 1.652zm6.599-3.835c1.404.835 3.128 1.35 4.974 1.35 5.394 0 9.782-4.387 9.784-9.782.001-2.612-1.015-5.068-2.862-6.916-1.847-1.847-4.303-2.861-6.913-2.862-5.396 0-9.786 4.388-9.788 9.784-.001 1.812.5 3.51 1.447 4.965l-1.085 4.004 4.143-1.086c-1.748 1.156-2.03 1.171-2.316 1.488-.041.045-.084.093-.129.145l.135.139zm12.115-5.918c-.347-.174-2.054-1.014-2.371-1.129-.317-.116-.548-.174-.779.174-.231.348-.897 1.13-1.099 1.36-.201.232-.404.261-.751.087-.348-.174-1.467-.539-2.793-1.72-1.031-.92-1.727-2.055-1.929-2.404-.203-.347-.021-.535.153-.708.156-.156.347-.406.52-.609.174-.203.232-.348.348-.58.116-.232.058-.435-.029-.609-.087-.174-.779-1.879-1.068-2.574-.282-.673-.567-.58-.779-.591-.202-.011-.434-.014-.665-.014-.231 0-.607.087-.925.435-.318.348-1.214 1.188-1.214 2.898 0 1.71 1.244 3.362 1.417 3.594.174.232 2.449 3.739 5.932 5.244.828.358 1.474.572 1.977.731.833.264 1.591.227 2.19.138.669-.1 2.054-.84 2.343-1.652.29-.811.29-1.507.202-1.652-.088-.145-.319-.232-.667-.406z">
+            </path>
+        </svg>
+    </a>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner"
+        class="fixed bottom-0 sm:bottom-4 left-0 sm:left-1/2 sm:-translate-x-1/2 w-full sm:w-[90%] max-w-4xl bg-surface-container-high text-on-surface p-4 sm:p-6 sm:rounded-2xl shadow-2xl z-[100] border border-outline-variant flex flex-col sm:flex-row items-center justify-between gap-4 transition-all duration-300">
+        <div class="text-sm font-body-md text-center sm:text-left flex-1">
+            Utilizamos cookies para mejorar tu experiencia en nuestra web. Al continuar navegando, aceptas nuestra
+            política de cookies.
+            <a href="#" class="text-secondary font-bold hover:underline">Más información</a>.
+        </div>
+        <button id="accept-cookies"
+            class="bg-secondary text-white px-8 py-3 rounded-lg font-headline-sm text-[16px] hover:bg-on-secondary-fixed-variant transition-colors whitespace-nowrap shadow-md">
+            Aceptar
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+
+            if (localStorage.getItem('cookiesAccepted')) {
+                cookieBanner.style.display = 'none';
+            }
+
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('cookiesAccepted', 'true');
+                cookieBanner.style.opacity = '0';
+                cookieBanner.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    cookieBanner.style.display = 'none';
+                }, 300);
+            });
+
+            // Menu Active State Logic
+            const menuLinks = document.querySelectorAll('#desktop-menu a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    menuLinks.forEach(l => {
+                        l.classList.remove('text-primary', 'border-b-2', 'border-secondary');
+                        l.classList.add('text-on-surface-variant', 'hover:text-primary');
+                    });
+                    this.classList.remove('text-on-surface-variant', 'hover:text-primary');
+                    this.classList.add('text-primary', 'border-b-2', 'border-secondary');
+                });
+            });
+
+            // ── Before / After Slider Logic ──
+            const baSlider = document.getElementById('ba-slider');
+            const baAfterWrap = document.getElementById('ba-after-wrap');
+            const baHandle = document.getElementById('ba-handle');
+            const baAfterImg = baAfterWrap ? baAfterWrap.querySelector('img') : null;
+
+            function syncAfterImgWidth() {
+                if (baSlider && baAfterImg) {
+                    baAfterImg.style.width = baSlider.getBoundingClientRect().width + 'px';
+                }
+            }
+
+            if (baSlider) {
+                let dragging = false;
+
+                syncAfterImgWidth();
+                window.addEventListener('resize', syncAfterImgWidth);
+
+                function setPosition(clientX) {
+                    const rect = baSlider.getBoundingClientRect();
+                    let pct = (clientX - rect.left) / rect.width;
+                    pct = Math.min(1, Math.max(0, pct));
+                    const pctStr = (pct * 100).toFixed(2) + '%';
+                    baAfterWrap.style.width = pctStr;
+                    baHandle.style.left = pctStr;
+                }
+
+                // Mouse events
+                baSlider.addEventListener('mousedown', e => { dragging = true; setPosition(e.clientX); e.preventDefault(); });
+                window.addEventListener('mousemove', e => { if (dragging) setPosition(e.clientX); });
+                window.addEventListener('mouseup', () => { dragging = false; });
+
+                // Touch events
+                baSlider.addEventListener('touchstart', e => { dragging = true; setPosition(e.touches[0].clientX); }, { passive: true });
+                window.addEventListener('touchmove', e => { if (dragging) setPosition(e.touches[0].clientX); }, { passive: true });
+                window.addEventListener('touchend', () => { dragging = false; });
+            }
+        });
+    </script>
+    <script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Captura de datos de los campos
+            const nombre = this.querySelector('input[type="text"]') ? this.querySelector('input[type="text"]').value : '';
+            const telefono = this.querySelector('input[type="tel"]') ? this.querySelector('input[type="tel"]').value : '';
+            const servicio = this.querySelector('select') ? this.querySelector('select').value : 'No especificado';
+            const mensaje = this.querySelector('textarea') ? this.querySelector('textarea').value : '';
+
+            // Construcción del mensaje limpio con formato para WhatsApp
+            const textoMsg = "Nueva solicitud de cita - Talleres Nieto Becerra\n\n" +
+                "- Nombre: " + nombre + "\n" +
+                "- Teléfono: " + telefono + "\n" +
+                "- Servicio: " + servicio + "\n" +
+                "- Mensaje: " + mensaje;
+
+            const urlWhatsApp = "https://wa.me/34611760606?text=" + encodeURIComponent(textoMsg);
+
+            // Redirección directa
+            window.open(urlWhatsApp, '_blank');
+        });
+    </script>
+</body>
+
+</html>
