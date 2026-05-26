@@ -683,31 +683,34 @@
             }
         });
     </script>
-    <script>
-        document.querySelector('form').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Captura de datos de los campos
-            const nombre = this.querySelector('input[type="text"]') ? this.querySelector('input[type="text"]').value : '';
-            const telefono = this.querySelector('input[type="tel"]') ? this.querySelector('input[type="tel"]').value : '';
-            const servicio = this.querySelector('select') ? this.querySelector('select').value : 'No especificado';
-            const mensaje = this.querySelector('textarea') ? this.querySelector('textarea').value : '';
-
-            // Construcción del mensaje limpio con formato para WhatsApp
-            const textoMsg = "Nueva solicitud de cita - Talleres Nieto Becerra\n\n" +
-                "- Nombre: " + nombre + "\n" +
-                "- Teléfono: " + telefono + "\n" +
-                "- Servicio: " + servicio + "\n" +
-                "- Mensaje: " + mensaje;
-
-            const urlWhatsApp = "https://wa.me/34611760606?text=" + encodeURIComponent(textoMsg);
-    // Redirección directa en la misma pestaña
+<script>
+  // Capturamos el envío de cualquier formulario en la web
+  document.addEventListener('submit', function (e) {
+    // Evitamos que la web se recargue y suba arriba
+    e.preventDefault();
+    
+    const formulario = e.target;
+    
+    // Recogemos los datos que ha escrito el cliente
+    const nombre = formulario.querySelector('input[type="text"]')?.value || '';
+    const telefono = formulario.querySelector('input[type="tel"]')?.value || '';
+    const mensaje = formulario.querySelector('textarea')?.value || '';
+    
+    // Montamos el texto para WhatsApp
+    const textoMsg = "Hola Talleres Nieto Becerra, quiero solicitar una cita previa:\n" +
+                     "- Nombre: " + nombre + "\n" +
+                     "- Teléfono: " + telefono + "\n" +
+                     "- Mensaje: " + mensaje;
+                     
+    const urlWhatsApp = "https://wa.me/34611760606?text=" + encodeURIComponent(textoMsg);
+    
+    // Redirige a WhatsApp en la misma pestaña
     window.location.href = urlWhatsApp;
     
-    // Vaciamos el formulario justo antes de irnos
-    this.reset(); 
+    // Limpiamos los campos para cuando el cliente regrese
+    formulario.reset();
   });
 </script>
-    
+
 </body>
 </html>
