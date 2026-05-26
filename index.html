@@ -701,17 +701,13 @@
                 "- Mensaje: " + mensaje;
 
             const urlWhatsApp = "https://wa.me/34611760606?text=" + encodeURIComponent(textoMsg);
-
-            // Redirección directa
-            window.open(urlWhatsApp, '_blank');
-
-<script>
-  // Este código vacía el formulario cuando el usuario vuelve atrás
-  window.addEventListener('pageshow', function(event) {
-    const formulario = document.querySelector('form');
-    if (formulario) {
-      formulario.reset();
+    // Redirección directa en la misma pestaña
+    window.location.href = urlWhatsApp;
+    
+    // Vaciamos el formulario justo antes de irnos
+    this.reset(); 
   });
 </script>
-
+    
 </body>
+</html>
