@@ -943,17 +943,44 @@
             });
 
             // Menu Active State Logic
-            const menuLinks = document.querySelectorAll('#desktop-menu a');
-            menuLinks.forEach(link => {
-                link.addEventListener('click', function () {
-                    menuLinks.forEach(l => {
-                        l.classList.remove('text-primary', 'border-b-2', 'border-secondary');
-                        l.classList.add('text-on-surface-variant', 'hover:text-primary');
-                    });
-                    this.classList.remove('text-on-surface-variant', 'hover:text-primary');
-                    this.classList.add('text-primary', 'border-b-2', 'border-secondary');
-                });
-            });
+        // Menu Active State Logic
+const menuLinks = document.querySelectorAll('#desktop-menu a');
+const sections = document.querySelectorAll('section');
+
+// Lógica para el clic
+menuLinks.forEach(link => {
+  link.addEventListener('click', function() {
+    menuLinks.forEach(l => {
+      l.classList.remove('text-primary', 'border-b-2', 'border-secondary');
+      l.classList.add('text-on-surface-variant', 'hover:text-primary', 'border-transparent');
+    });
+    this.classList.remove('text-on-surface-variant', 'hover:text-primary', 'border-transparent');
+    this.classList.add('text-primary', 'border-b-2', 'border-secondary');
+  });
+});
+
+// Lógica para el scroll
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    if (window.scrollY >= sectionTop - sectionHeight / 3) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  menuLinks.forEach(link => {
+    if (link.getAttribute('href') === `#${current}`) {
+      menuLinks.forEach(l => {
+        l.classList.remove('text-primary', 'border-b-2', 'border-secondary');
+        l.classList.add('text-on-surface-variant', 'hover:text-primary', 'border-transparent');
+      });
+      link.classList.remove('text-on-surface-variant', 'hover:text-primary', 'border-transparent');
+      link.classList.add('text-primary', 'border-b-2', 'border-secondary');
+    }
+  });
+});
 
             // ── Before / After Slider Logic ──
             const baSlider = document.getElementById('ba-slider');
@@ -1023,6 +1050,7 @@
         });
     </script>
 
+    
 </body>
 
 </html>
