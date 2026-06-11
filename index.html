@@ -3,6 +3,14 @@
 <html class="light scroll-smooth" lang="es" style="">
 
 <head>
+    <style>
+  @media (max-width: 767px) {
+    #testimonial-carousel {
+      touch-action: pan-y;
+      scroll-snap-type: none;
+    }
+  }
+</style>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -444,8 +452,7 @@
                 </div>
             </div>
 
-<div id="testimonial-carousel" class="flex gap-10 overflow-x-auto snap-x snap-mandatory pb-8 [::-webkit-scrollbar]:hidden" style="touch-action: pan-y pinch-zoom;">
-    
+<div id="testimonial-carousel" class="flex gap-10 overflow-x-auto snap-x snap-mandatory pb-8 [::-webkit-scrollbar]:hidden">  
                 <!-- Testimonial 1 -->
                 <div class="technical-border p-8 min-w-[320px] max-w-[320px] snap-center flex-shrink-0 bg-white border border-gray-100 rounded-3xl shadow-sm space-y-4">
                     <div class="flex items-start gap-4">
