@@ -2,13 +2,22 @@
 
 <html class="light scroll-smooth" lang="es" style="">
 
-<head>
-    <style>
+<head>   
+<style>
   @media (max-width: 767px) {
     #testimonial-carousel {
-      touch-action: pan-y;
-      scroll-snap-type: none;
+      touch-action: pan-x;
+      scroll-snap-type: x mandatory;
     }
+  }
+
+  #testimonial-carousel {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  #testimonial-carousel::-webkit-scrollbar {
+    display: none;
   }
 </style>
     <meta charset="utf-8" />
