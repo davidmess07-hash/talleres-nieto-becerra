@@ -4,21 +4,31 @@
 
 <head>   
 <style>
-  @media (max-width: 767px) {
-    #testimonial-carousel {
-      touch-action: pan-x;
-      scroll-snap-type: x mandatory;
+    @media (max-width: 767px) {
+        /* Fuerza a que el contenedor de las reseñas no bloquee el scroll vertical */
+        .contenedor-resenas-movil {
+            display: flex !important;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory !important;
+            -webkit-overflow-scrolling: touch !important;
+            
+            /* Esto permite mover de izquierda a derecha, pero NO bloquea el arriba y abajo */
+            touch-action: pan-x pan-y !important;
+            
+            /* Añade espacio al final para que el último globito no se quede cortado */
+            padding-right: 2.5rem !important; 
+        }
+
+        .contenedor-resenas-movil > * {
+            scroll-snap-align: start !important;
+            flex-shrink: 0 !important;
+        }
+
+        /* Margen extra al último globito (el de ver todas las reseñas) */
+        .contenedor-resenas-movil > *:last-child {
+            margin-right: 2.5rem !important;
+        }
     }
-  }
-
-  #testimonial-carousel {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  #testimonial-carousel::-webkit-scrollbar {
-    display: none;
-  }
 </style>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -461,7 +471,7 @@
                 </div>
             </div>
 
-<div id="testimonial-carousel" class="flex gap-10 overflow-x-auto snap-x snap-mandatory pb-8 [::-webkit-scrollbar]:hidden">
+<div id="testimonial-carousel" class="contenedor-resenas-movil flex gap-10 overflow-x-auto snap-x snap-mandatory pb-8 [::-webkit-scrollbar]:hidden">
                 <!-- Testimonial 1 -->
                 <div class="technical-border p-8 min-w-[320px] max-w-[320px] snap-center flex-shrink-0 bg-white border border-gray-100 rounded-3xl shadow-sm space-y-4">
                     <div class="flex items-start gap-4">
